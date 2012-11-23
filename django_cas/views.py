@@ -76,7 +76,7 @@ def login(request, next_page=None, required=False):
     service = _service_url(request, next_page)
     if ticket:
         from django.contrib import auth
-        user = auth.authenticate(ticket=ticket, service=service)
+        user = auth.authenticate(ticket=ticket, service=service, request=request)
         if user is not None:
             auth.login(request, user)
             name = user.first_name or user.username
